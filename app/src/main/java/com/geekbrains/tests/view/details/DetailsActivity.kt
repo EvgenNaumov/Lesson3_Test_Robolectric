@@ -46,9 +46,6 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
     companion object {
 
         const val TOTAL_COUNT_EXTRA = "TOTAL_COUNT_EXTRA"
-        const val KEY_TOTAL_COUNT = "KEY_TOTAL_COUNT"
-
-
         fun getIntent(context: Context, totalCount: Int): Intent {
             return Intent(context, DetailsActivity::class.java).apply {
                 putExtra(TOTAL_COUNT_EXTRA, totalCount)
