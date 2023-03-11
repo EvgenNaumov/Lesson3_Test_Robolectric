@@ -3,6 +3,7 @@ package com.geekbrains.tests.view.details
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.tests.R
 import com.geekbrains.tests.presenter.details.DetailsPresenter
@@ -12,18 +13,23 @@ import java.util.*
 
 class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
 
-    private val presenter: PresenterDetailsContract = DetailsPresenter(this)
+    private lateinit var presenter: PresenterDetailsContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        setUI()
+        presenter = lastCustomNonConfigurationInstance as? PresenterDetailsContract ?:DetailsPresenter()
+        presenter.onAttach(this)
+        if (savedInstanceState==null) setUI()
+
     }
 
+    override fun onRetainCustomNonConfigurationInstance(): PresenterDetailsContract {
+        return presenter
+    }
     private fun setUI() {
         val count = intent.getIntExtra(TOTAL_COUNT_EXTRA, 0)
         presenter.setCounter(count)
-        setCountText(count)
         decrementButton.setOnClickListener { presenter.onDecrement() }
         incrementButton.setOnClickListener { presenter.onIncrement() }
     }
@@ -40,11 +46,22 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
     companion object {
 
         const val TOTAL_COUNT_EXTRA = "TOTAL_COUNT_EXTRA"
+        const val KEY_TOTAL_COUNT = "KEY_TOTAL_COUNT"
+
 
         fun getIntent(context: Context, totalCount: Int): Intent {
             return Intent(context, DetailsActivity::class.java).apply {
                 putExtra(TOTAL_COUNT_EXTRA, totalCount)
             }
         }
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDetach()
+    }
+
+
+
 }
