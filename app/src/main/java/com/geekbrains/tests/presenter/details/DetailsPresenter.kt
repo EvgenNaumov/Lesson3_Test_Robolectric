@@ -6,7 +6,9 @@ class DetailsPresenter (
     private var count: Int = 0
 ) : PresenterDetailsContract {
 
-    private var viewContract: ViewDetailsContract? = null
+    var viewContract: ViewDetailsContract? = null
+    set
+
     private var count_:Int = 0
 
     override fun setCounter(count: Int) {
@@ -26,7 +28,7 @@ class DetailsPresenter (
     }
 
     override fun onAttach(view: ViewDetailsContract) {
-        viewContract = view
+        this.viewContract = view
         this.count = count_
         viewContract!!.setCount(count)
 
