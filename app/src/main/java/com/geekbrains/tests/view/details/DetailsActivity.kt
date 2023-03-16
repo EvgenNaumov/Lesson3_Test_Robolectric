@@ -20,7 +20,7 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         setContentView(R.layout.activity_details)
         presenter = lastCustomNonConfigurationInstance as? PresenterDetailsContract ?:DetailsPresenter()
         presenter.onAttach(this)
-        if (savedInstanceState==null) setUI()
+        setUI()
 
     }
 
