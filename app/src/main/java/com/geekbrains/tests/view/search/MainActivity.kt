@@ -1,11 +1,14 @@
 package com.geekbrains.tests.view.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.getSystemService
 import com.geekbrains.tests.BuildConfig
 import com.geekbrains.tests.R
 import com.geekbrains.tests.model.SearchResult
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     private fun setUI() {
         toDetailsActivityButton.setOnClickListener {
             startActivity(DetailsActivity.getIntent(this, totalCount))
+        }
+
+        toOpenSearchTextButton.setOnClickListener {
+            val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.toggleSoftInput(1,2)
+
         }
         setQueryListener()
         setRecyclerView()
