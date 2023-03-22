@@ -77,7 +77,7 @@ class BehaviorTest {
             )
         //Убеждаемся, что сервер вернул корректный результат. Обратите внимание, что количество
         //результатов может варьироваться во времени, потому что количество репозиториев постоянно меняется.
-        Assert.assertEquals(changedText.text.toString(), "Number of results: 668")
+        Assert.assertEquals(changedText.text.toString(), "Number of results: 42")
     }
 
     //Убеждаемся, что DetailsScreen открывается
