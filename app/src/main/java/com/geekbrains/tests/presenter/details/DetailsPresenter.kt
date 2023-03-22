@@ -12,9 +12,8 @@ class DetailsPresenter (
     private var count_:Int = 0
 
     override fun setCounter(count: Int) {
-        this.count = count
-        count_ = count
-        viewContract?.setCount(count)
+        this.count = if (count_!=0) count_ else count
+        viewContract?.setCount(this.count)
     }
 
     override fun onIncrement() {
@@ -29,8 +28,8 @@ class DetailsPresenter (
 
     override fun onAttach(view: ViewDetailsContract) {
         this.viewContract = view
-        this.count = count_
-        viewContract!!.setCount(count)
+//        this.count = count_
+//        viewContract!!.setCount(count)
 
     }
 
