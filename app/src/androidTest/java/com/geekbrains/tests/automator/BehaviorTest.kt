@@ -8,7 +8,6 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
@@ -59,7 +58,7 @@ class BehaviorTest {
     }
     //Убеждаемся, что поиск работает как ожидается
     @Test
-    fun test_SearchIsPositive() {
+    fun test_SearchIsPositive()                                                                                                                                         {
         //Через uiDevice находим editText
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
         //Устанавливаем значение
