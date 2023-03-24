@@ -13,7 +13,6 @@ import androidx.test.filters.LargeTest
 import com.geekbrains.tests.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +20,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class DetailActivityTest {
+class DetailActivityTestEspresso {
 
     @Rule
     @JvmField
@@ -32,29 +31,17 @@ class DetailActivityTest {
         val detailsActivityButton = onView(withId(R.id.toDetailsActivityButton))
         detailsActivityButton.perform(click())
 
-        val materialButton2 = onView(withId(R.id.incrementButton))
-        materialButton2.perform(click())
+        val incrementButton = onView(withId(R.id.incrementButton))
+        incrementButton.perform(click())
 
-        val textView = onView(withId(R.id.totalCountTextView))
-        textView.check(matches(withText("Number of results: 1")))
+        val totalCountTextViewTextView = onView(withId(R.id.totalCountTextView))
+        totalCountTextViewTextView.check(matches(withText("Number of results: 1")))
 
-        val button2 = onView(
-            allOf(
-                withId(R.id.decrementButton), withText("-"),
-                withParent(withParent(withId(android.R.id.content))),
-                isDisplayed()
-            )
+        val decrementButton = onView(
+            withId(R.id.decrementButton)
         )
-        button2.check(matches(isDisplayed()))
+        decrementButton.check(matches(isDisplayed()))
 
-        val button3 = onView(
-            allOf(
-                withId(R.id.decrementButton), withText("-"),
-                withParent(withParent(withId(android.R.id.content))),
-                isDisplayed()
-            )
-        )
-        button3.check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(
