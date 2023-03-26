@@ -49,7 +49,7 @@ class DetailsPresenterTest {
             val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextView)
             decrementButton.performClick()
 
-            assertEquals("Number of results: -1", totalCountTextView)
+            assertEquals(TEST_NUMBER_OF_RESULTS_MINUS_1, totalCountTextView)
         }
 
 
