@@ -10,6 +10,9 @@ import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.transition.FragmentTransitionSupport
 import com.geekbrains.tests.BuildConfig
 import com.geekbrains.tests.R
 import com.geekbrains.tests.model.SearchResult
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     private fun setUI() {
         toDetailsActivityButton.setOnClickListener {
-            startActivity(DetailsActivity.getIntent(this, totalCount))
+           startActivity(DetailsActivity.getIntent(this, totalCount))
         }
 
         toOpenSearchTextButton.setOnClickListener {
