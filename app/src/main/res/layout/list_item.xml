@@ -22,4 +22,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/repositoryName"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
